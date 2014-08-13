@@ -17,7 +17,7 @@
 (add-to-list 'load-path (concat *emacs-site-lisp* "/cedet"))
 
 
-(add-to-list 'load-path (concat *ec-root* "/elisp/yasnippet-git"))
+(add-to-list 'load-path (concat *ec-root* "/elisp/yasnippet"))
 (require 'yasnippet) ;; not yasnippet-bundle
 (require 'yasnippet-debug)
 
@@ -25,7 +25,7 @@
 ;; ;			(concat *ec-root* "/elisp/yas-extras/imported")))
 (setq yas-snippet-dirs (list ; "~/.emacs.d/snippets"
                               ; "~/.emacs.d/plugins/yasnippet/extras/imported"
-                              (concat *ec-root* "/elisp/yasnippet-git/snippets")
+                              (concat *ec-root* "/elisp/yasnippet/snippets")
                               (concat *ec-root* "/elisp/mysnippets")
                               (concat *ec-root* "/elisp/yas-extras/imported")
                               ))
@@ -75,8 +75,8 @@
           (require 'ecb)))
 
 ;; 多重选取/编辑特性，重构代码，批量变量改名
-(add-to-list 'load-path (concat *ec-root* "/elisp/multiple-cursors.el"))
-(load (concat *ec-root* "/elisp/multiple-cursors.el/multiple-cursors.el"))
+(add-to-list 'load-path (concat *ec-root* "/elisp/multiple-cursors"))
+(load (concat *ec-root* "/elisp/multiple-cursors/multiple-cursors.el"))
 
 ;; 这个没有svn信息，缺少不少信息的显示。
 ;; (load (concat *ec-root*  "/elisp/tiny-powerline.el"))
