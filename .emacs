@@ -205,6 +205,10 @@
 
 (defun ac-cc-mode-setup ()
   (setq ac-clang-complete-executable "~/emacs.d/clang-complete")
+;  (if (string-match (shell-command-to-string "/usr/bin/uname -m") "i686\n")
+;      (setq ac-clang-complete-executable "~/emacs.d/clang-complete32")
+;    (setq ac-clang-complete-executable "~/emacs.d/clang-complete"))
+  (message ac-clang-complete-executable)
   (setq ac-sources '(ac-source-clang-async))
   (ac-clang-launch-completion-process)
 )
