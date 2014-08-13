@@ -1,0 +1,5 @@
+(add-to-list 'load-path
+              "~/emacs.d/elisp/yasnippet-git")
+(require 'yasnippet)
+(require 'yasnippet-debug)
+(yas/global-mode 1)
