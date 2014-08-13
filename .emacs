@@ -216,6 +216,7 @@
 (defun my-ac-config ()
   (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
   (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+  (setq ac-auto-show-menu 1)
   (global-auto-complete-mode t))
 
 (my-ac-config)
