@@ -1,0 +1,5 @@
+(load-file "~/emacs.d/elisp/popup.el")
+(load-file "~/emacs.d/elisp/auto-complete.el")
+(load-file "~/emacs.d/elisp/auto-complete-config.el")
+(load-file "~/emacs.d/elisp/auto-complete-clang-async.el")
+(load-file "~/emacs.d/abc.el")
