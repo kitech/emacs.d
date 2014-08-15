@@ -209,6 +209,7 @@
 ;      (setq ac-clang-complete-executable "~/emacs.d/clang-complete32")
 ;    (setq ac-clang-complete-executable "~/emacs.d/clang-complete"))
   (message ac-clang-complete-executable)
+
   (setq ac-sources '(ac-source-clang-async))
   (ac-clang-launch-completion-process)
 )
@@ -218,6 +219,24 @@
   (add-hook 'auto-complete-mode-hook 'ac-common-setup)
   (setq ac-auto-show-menu 1)
   (global-auto-complete-mode t))
+
+;; ac flag, paths
+;; 这个没有用吗？需要注释一行：;;(make-variable-buffer-local 'ac-clang-cflags)
+(setq ac-clang-cflags
+      (mapcar (lambda (item)(concat "-I" item))
+              (split-string
+               "
+/usr/include
+/usr/include/qt/
+/usr/include/qt/QtCore
+/usr/include/qt/QtGui
+/usr/include/qt/QtWidgets
+/usr/include/qt/QtNetwork
+"
+               )))
+
+
+;; (ac-clang-syntax-check)
 
 (my-ac-config)
 
@@ -325,18 +344,6 @@
 ;; winner-mode 
 ;; winner-undo
 
-(defun ac-cc-mode-setup ()
-  (setq ac-clang-complete-executable "~/emacs.d/clang-complete")
-  (setq ac-sources '(ac-source-clang-async))
-  (ac-clang-launch-completion-process)
-)
-
-(defun my-ac-config ()
-  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-  (global-auto-complete-mode t))
-
-;(my-ac-config)
 ; (require 'linum)
 ; (setq linum-format (concat linum-format "  "))
 ; (setq linum-format "%d  ") ; (setq width (max width (+ (length str) 1)))

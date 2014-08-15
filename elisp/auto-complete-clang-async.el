@@ -55,7 +55,7 @@
 This variable will typically contain include paths, e.g., (\"-I~/MyProject\" \"-I.\")."
   :group 'auto-complete
   :type '(repeat (string :tag "Argument" "")))
-(make-variable-buffer-local 'ac-clang-cflags)
+;; (make-variable-buffer-local 'ac-clang-cflags)
 
 (defun ac-clang-set-cflags ()
   "Set `ac-clang-cflags' interactively."

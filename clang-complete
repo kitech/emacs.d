@@ -7,7 +7,7 @@ self_dir=$(dirname $(readlink -f $0));
 arch=$(uname -m);
 
 if [ $arch = "i686" ] ; then
-    $self_dir/clang-complete32 $@
+    $self_dir/clang-complete32 -v $@
 else
-    $self_dir/clang-complete64 $@
+    $self_dir/clang-complete64 -v $@
 fi
