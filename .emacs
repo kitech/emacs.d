@@ -287,11 +287,15 @@
 
 (require 'textmate)
 (textmate-mode)
+
+;; 这是ecb-store-window-sizes函数自动添加的
+;; 记录ecb的窗口状态
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ecb-layout-window-sizes (quote (("left8" (ecb-directories-buffer-name 0.21428571428571427 . 0.28) (ecb-sources-buffer-name 0.21428571428571427 . 0.22) (ecb-methods-buffer-name 0.21428571428571427 . 0.28) (ecb-history-buffer-name 0.21428571428571427 . 0.18)))))
  '(ecb-options-version "2.40")
  '(ede-project-directories (quote ("/home/gzleo/emacs.d"))))
 (custom-set-faces
