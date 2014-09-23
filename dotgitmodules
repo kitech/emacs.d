@@ -1,0 +1,9 @@
+[submodule "yasnippet"]
+	path = elisp/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
+[submodule "multiple-cursors"]
+	path = elisp/multiple-cursors
+	url = https://github.com/magnars/multiple-cursors.el
+[submodule "ecb"]
+	path = elisp/ecb
+	url = https://github.com/emacsmirror/ecb.git
