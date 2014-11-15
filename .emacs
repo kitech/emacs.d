@@ -96,6 +96,8 @@
 (setq tab-width 4)
 (setq c-basic-offset 4)
 (setq truncate-partial-width-windows t)
+(setq ruby-indent-level 4)
+
 
 ;; Base setting
 (defalias 'yes-or-no-p 'y-or-n-p)
