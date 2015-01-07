@@ -101,7 +101,9 @@
 
 ;; Base setting
 (defalias 'yes-or-no-p 'y-or-n-p)
-(set-background-color "#CDE8D0")
+(set-background-color "#CCE8CF")
+;; 十六进制颜色：#C7EDCC或用#CCE8CF
+;; #CDE8D0
 
 
 ;; (print (not window-system))
@@ -195,7 +197,7 @@
                          header-end-line
                          ))
 (setq header-copyright-notice 
-      "Copyright (C) 2007-2014 liuguangzhao@users.sf.net\n")
+      "Copyright (C) 2007-2015 liuguangzhao@users.sf.net\n")
 (setq header-date-format "%Y-%m-%d %T %z")
 (make-local-variable 'user-full-name) 
 (make-local-variable 'user-mail-address)
@@ -282,6 +284,11 @@
 (require 'qml-mode)
 (add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
 
+;; scala mode
+(add-to-list 'load-path (concat *ec-root* "/elisp/scala-emacs-mode"))
+(require 'scala-mode-auto)
+(setq scala-mode-indent:step 4)
+
 ;; load highlight-tail, sexy modify progress
 (require 'highlight-tail)
 (highlight-tail-mode t)
@@ -321,7 +328,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ecb-layout-window-sizes (quote (("left8" (ecb-directories-buffer-name 0.21428571428571427 . 0.28) (ecb-sources-buffer-name 0.21428571428571427 . 0.22) (ecb-methods-buffer-name 0.21428571428571427 . 0.28) (ecb-history-buffer-name 0.21428571428571427 . 0.18)))))
+ '(ecb-layout-window-sizes
+   (quote
+    (("left8"
+      (ecb-directories-buffer-name 0.13043478260869565 . 0.2857142857142857)
+      (ecb-sources-buffer-name 0.13043478260869565 . 0.22448979591836735)
+      (ecb-methods-buffer-name 0.13043478260869565 . 0.2857142857142857)
+      (ecb-history-buffer-name 0.13043478260869565 . 0.1836734693877551)))))
  '(ecb-options-version "2.40")
  '(ede-project-directories (quote ("/home/gzleo/emacs.d"))))
 (custom-set-faces
