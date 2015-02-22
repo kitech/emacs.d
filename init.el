@@ -3,6 +3,7 @@
 ;; ~/emacs.d/
 ;;├── el-get
 ;;├── el-get-init-files
+;;├── el-get-recipes
 ;;├── elpa
 ;;├── .emacs
 ;;├── handby
@@ -46,17 +47,59 @@
 (require 'package)
 (require 'el-get)
 (require 'init-company-mode)
+(require 'init-emacs-ycmd)
 (require 'init-yasnippet)
 (require 'init-ecb)
+(require 'init-header2)
+(require 'init-markdown-mode)
+(require 'init-cmake-mode)
+(require 'init-php-mode)
+(require 'init-yafolding)
 
+;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
+(require 'highline) (global-highline-mode t)
 ;;(require 'ruby-mode)
-(require 'php-mode)
-(require 'go-mode)
+(require 'pkgbuild-mode)
+
+ ;; go lang
+(require 'go-mode) (require `go-mode-load)
+
 (require 'scala-mode2)
 (require 'sbt-mode)
 (require 'idle-highlight-mode)
 (load (concat *elroot* "/handby/request-deferred.el"))
 (require 'request-deferred)
 (require 'company-ycmd)
+(require 'js2-mode)
+(require 'nginx-mode)
+(require 'protobuf-mode)
+
+(require 'qmake-mode)
+(add-to-list 'auto-mode-alist '("\\.pr[io]$" . qmake-mode))
+
+(require 'qml-mode)
+(add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
+
+(require 'textmate) (textmate-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;
+(dolist (hook (list
+               'emacs-lisp-mode-hook
+               'lisp-mode-hook
+               'lisp-interaction-mode-hook
+               'scheme-mode-hook
+               'c-mode-common-hook
+               'cc-mode-hook
+               'c++-mode-hook
+               'php-mode-hook
+               'ruby-mode-hook
+               'python-mode-hook
+               'go-mode-hook
+               'haskell-mode-hook
+               'asm-mode-hook
+               'emms-tag-editor-mode-hook
+               'sh-mode-hook))
+  (add-hook hook 'company-mode))
 
 (provide 'init)

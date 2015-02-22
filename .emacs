@@ -16,23 +16,6 @@
 (add-to-list 'load-path (concat *emacs-site-lisp* "/ecb"))
 (add-to-list 'load-path (concat *emacs-site-lisp* "/cedet"))
 
-
-(add-to-list 'load-path (concat *ec-root* "/elisp/yasnippet"))
-(require 'yasnippet) ;; not yasnippet-bundle
-(require 'yasnippet-debug)
-
-;; ;(setq yas/snippet-dirs ((concat *ec-root* "/elisp/mysnippets")
-;; ;			(concat *ec-root* "/elisp/yas-extras/imported")))
-(setq yas-snippet-dirs (list ; "~/.emacs.d/snippets"
-                              ; "~/.emacs.d/plugins/yasnippet/extras/imported"
-                              (concat *ec-root* "/elisp/yasnippet/snippets")
-                              (concat *ec-root* "/elisp/mysnippets")
-                              (concat *ec-root* "/elisp/yas-extras/imported")
-                              ))
-;(yas/global-mode 1)
-(yas-global-mode 1)
-;(yas/initialize)
-; (yas/load-directory (concat *ec-root* "/elisp/snippets"))
 (load (concat *ec-root* "/elisp/gzleo.el"))
 ;(load (concat *ec-root* "/elisp/mweb-example-config.el"))
 ;web mode
@@ -47,32 +30,6 @@
 ;(add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
 
 
-;; (setq cedet_el (concat *emacs-site-lisp* "/cedet/common/cedet.el"))
-;; (if (not (file-exists-p cedet_el))
-;;     (setq cedet_el (concat *ec-root* "/elisp/cedet/common/cedet.el")))
-;; (if
-;;     (file-exists-p cedet_el)
-;;     (list ;; (load cedet_el)
-;;           (global-ede-mode 1)
-;;           ;; (semantic-load-enable-minimum-features)
-;;           ;; (semantic-load-enable-code-helpers) ;; 目前这一行导致emacs死锁, CPU 100%
-;;           ;; (semantic-load-enable-gaudy-code-helpers)
-;;           ;; (semantic-load-enable-all-exuberent-ctags-support)
-;;           ;; (global-srecode-minor-mode 1)
-;; 	  (+ 1 2)
-;; 	)
-;;   )
-
-(setq stack-trace-on-error t) ; for ecb & emacs24 problem
-;; 查找安装在系统中的ecb
-(if (file-exists-p (concat *emacs-site-lisp* "/ecb/ecb.el"))
-    (list (load (concat *emacs-site-lisp* "/ecb/ecb.el"))
-          (require 'ecb)))
-
-;; 查找用户目录下的ecb
-(if (file-exists-p (concat *ec-root*  "/elisp/ecb/ecb.el"))
-    (list (load (concat *ec-root*  "/elisp/ecb/ecb.el"))
-          (require 'ecb)))
 
 ;; 多重选取/编辑特性，重构代码，批量变量改名
 (add-to-list 'load-path (concat *ec-root* "/elisp/multiple-cursors"))
@@ -160,7 +117,8 @@
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
 ;; (setq hl-line-mode t)
-(hl-line-mode t)
+;; (hl-line-mode t)
+
 
 (setq display-time-24hr-format t)
 (display-time) ;; 显示 24 小时制时间
@@ -173,35 +131,6 @@
 ;; Emacs.geometry: 88x65+0+-2
 ;; 
 
-;; PHP 语法高亮
-(autoload 'php-mode "php-mode" "Major mode for editing PHP code." t)
-(add-to-list 'auto-mode-alist '("\\.php[s34]?\\'" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.inc\\'" . php-mode))
-
-;; go lang
-(require `go-mode-load)
-
-;; file header
-(setq user-full-name "liuguangzhao") 
-(setq user-mail-address "liuguangzhao@users.sf.net") 
-(setq user-homepage "http://www.qtchina.tk http://nullget.sourceforge.net")
-(require 'header2)
-(setq make-header-hook '(header-title
-                         header-blank
-                         header-author
-                         header-copyright
-                         header-url
-                         header-creation-date
-                         header-rcs-id
-                         header-end-line
-                         ))
-(setq header-copyright-notice 
-      "Copyright (C) 2007-2015 liuguangzhao@users.sf.net\n")
-(setq header-date-format "%Y-%m-%d %T %z")
-(make-local-variable 'user-full-name) 
-(make-local-variable 'user-mail-address)
-(make-local-variable 'user-homepage)
 
 ;; 2015-02-16
 (load (concat *ec-root* "/init.el"))
@@ -261,21 +190,21 @@
 ;; (my-ac-config)
 
 
-(require 'auto-complete-extension)
-(require 'autocompletion-php-functions)
-(global-auto-complete-mode t)
+;; (require 'auto-complete-extension)
+;; (require 'autocompletion-php-functions)
+;; (global-auto-complete-mode t)
 
-;; Completion by return
-(define-key ac-complete-mode-map "\t" 'ac-complete)
-(define-key ac-complete-mode-map "\r" 'ac-complete)
+;; ;; Completion by return
+;; (define-key ac-complete-mode-map "\t" 'ac-complete)
+;; (define-key ac-complete-mode-map "\r" 'ac-complete)
 
-;; Use C-n/C-p to select candidates
-(define-key ac-complete-mode-map "\C-n" 'ac-next)
-(define-key ac-complete-mode-map "\C-p" 'ac-previous)
-(define-key ac-complete-mode-map "\M-/" 'ac-stop)
-(global-set-key "\M-/" 'ac-start)
+;; ;; Use C-n/C-p to select candidates
+;; (define-key ac-complete-mode-map "\C-n" 'ac-next)
+;; (define-key ac-complete-mode-map "\C-p" 'ac-previous)
+;; (define-key ac-complete-mode-map "\M-/" 'ac-stop)
+;; (global-set-key "\M-/" 'ac-start)
 
-(setq-default ac-sources '(ac-source-abbrev ac-source-words-in-buffer ac-source-c++))
+;; (setq-default ac-sources '(ac-source-abbrev ac-source-words-in-buffer ac-source-c++))
 
 ;;
 (if (not (eq window-system nil))
@@ -286,19 +215,7 @@
 (require 'flymake)
 (add-hook 'php-mode-hook (lambda () (flymake-mode 1)))
 
-
 (add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))
-(require 'cmake-mode)
-(setq auto-mode-alist
-      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
-                ("\\.cmake\\'" . cmake-mode))
-              auto-mode-alist))
-
-(require 'qt-pro)
-(add-to-list 'auto-mode-alist '("\\.pr[io]$" . qt-pro-mode))
-
-(require 'qml-mode)
-(add-to-list 'auto-mode-alist '("\\.qml$" . qml-mode))
 
 ;; scala mode
 (add-to-list 'load-path (concat *ec-root* "/elisp/scala-emacs-mode"))
@@ -314,7 +231,6 @@
 (require 'mode-line-face-settings)
 (require 'mode-line-settings)
 
-(require 'pkgbuild-mode)
 
 ;;加载muse-mode
 (require 'muse-mode)
@@ -334,9 +250,6 @@
 (load "duplicate-line.el")
 (global-set-key "\M-p" 'duplicate-previous-line)
 (global-set-key "\M-n" 'duplicate-following-line)
-
-(require 'textmate)
-(textmate-mode)
 
 ;; 这是ecb-store-window-sizes函数自动添加的
 ;; 记录ecb的窗口状态
@@ -362,12 +275,6 @@
  '(header-line ((default :inherit mode-line) (((type tty)) :foreground "black" :background "yellow" :inverse-video nil) (((class color grayscale) (background light)) :background "grey90" :foreground "grey20" :box nil) (((class color grayscale) (background dark)) :background "#D58EFFFFFC18" :foreground "blue") (((class mono) (background light)) :background "white" :foreground "black" :inverse-video nil :box nil :underline t) (((class mono) (background dark)) :background "black" :foreground "white" :inverse-video nil :box nil :underline t)))
  '(mode-line-buffer-id ((((class grayscale) (background light)) (:foreground "LightGray" :background "yellow" :weight bold)) (((class grayscale) (background dark)) (:foreground "DimGray" :background "yellow" :weight bold)) (((class color) (min-colors 88) (background light)) (:foreground "Orchid" :background "yellow")) (((class color) (min-colors 88) (background dark)) (:foreground "yellow" :background "HotPink3")) (((class color) (min-colors 16) (background light)) (:foreground "Orchid" :background "yellow")) (((class color) (min-colors 16) (background dark)) (:foreground "LightSteelBlue" :background "yellow")) (((class color) (min-colors 8)) (:foreground "blue" :background "yellow" :weight bold)) (t (:weight bold)))))
 
-
-(autoload 'markdown-mode "markdown-mode"
-  "Major mode for editing Markdown files" t)
-;;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 
 ;; last step 
