@@ -1,13 +1,13 @@
 ;;; .emacs --- 
 ;; 
 ;; Author: liuguangzhao
-;; Copyright (C) 2007-2013 liuguangzhao@users.sf.net
+;; Copyright (C) 2007-2015 liuguangzhao@users.sf.net
 ;; URL: http://www.qtchina.net http://nullget.sourceforge.net
 ;; Created: 2009-08-29 17:25:22 +0800
 ;; Version: $Id: .emacs 1163 2014-06-03 03:10:16Z drswinghead $
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar *ec-root* "~/emacs.d")
+(defvar *ec-root* (expand-file-name "~/emacs.d"))
 (defvar *emacs-site-lisp* "/usr/share/emacs/site-lisp")
 
 (add-to-list 'load-path (concat *ec-root* "/elisp"))
@@ -203,46 +203,62 @@
 (make-local-variable 'user-mail-address)
 (make-local-variable 'user-homepage)
 
+;; 2015-02-16
+(load (concat *ec-root* "/init.el"))
+;; (add-to-list 'load-path (concat *ec-root* "/el-get/el-get"))
+;(require 'el-get)
+;(add-to-list 'load-path (concat *ec-root* "/elisp/emacs-ycmd"))
+;(set-variable 'ycmd-global-config "/path/to/global_config.py")
+;(set-variable 'ycmd-server-command '("python2" "/home/gzleo/opensource/ycmd/ycmd"))
+;(require 'ycmd)
+;(ycmd-setup)
+;(add-to-list 'load-path (concat *ec-root* "/elisp/company-mode"))
+;(require 'company)
+;(require 'company-ycmd)
+;(company-ycmd-setup)
+
+;(require 'fuzzy.el)
+
 ;; 2014-08-13
-(load (concat *ec-root* "/elisp/auto-complete-config.el"))
-(require 'auto-complete-clang-async)
+;(load (concat *ec-root* "/elisp/auto-complete-config.el"))
+;(require 'auto-complete-clang-async)
 
-(defun ac-cc-mode-setup ()
-  (setq ac-clang-complete-executable "~/emacs.d/clang-complete")
-;  (if (string-match (shell-command-to-string "/usr/bin/uname -m") "i686\n")
-;      (setq ac-clang-complete-executable "~/emacs.d/clang-complete32")
-;    (setq ac-clang-complete-executable "~/emacs.d/clang-complete"))
-  (message ac-clang-complete-executable)
+;; (defun ac-cc-mode-setup ()
+;;   (setq ac-clang-complete-executable "~/emacs.d/clang-complete")
+;; ;  (if (string-match (shell-command-to-string "/usr/bin/uname -m") "i686\n")
+;; ;      (setq ac-clang-complete-executable "~/emacs.d/clang-complete32")
+;; ;    (setq ac-clang-complete-executable "~/emacs.d/clang-complete"))
+;;   (message ac-clang-complete-executable)
 
-  (setq ac-sources '(ac-source-clang-async))
-  (ac-clang-launch-completion-process)
-)
+;;   (setq ac-sources '(ac-source-clang-async))
+;;   (ac-clang-launch-completion-process)
+;; )
 
-(defun my-ac-config ()
-  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-  (setq ac-auto-show-menu 1)
-  (global-auto-complete-mode t))
+;; (defun my-ac-config ()
+;;   (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+;;   (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+;;   (setq ac-auto-show-menu 1)
+;;   (global-auto-complete-mode t))
 
-;; ac flag, paths
-;; 这个没有用吗？需要注释一行：;;(make-variable-buffer-local 'ac-clang-cflags)
-(setq ac-clang-cflags
-      (mapcar (lambda (item)(concat "-I" item))
-              (split-string
-               "
-/usr/include
-/usr/include/qt/
-/usr/include/qt/QtCore
-/usr/include/qt/QtGui
-/usr/include/qt/QtWidgets
-/usr/include/qt/QtNetwork
-"
-               )))
+;; ;; ac flag, paths
+;; ;; 这个没有用吗？需要注释一行：;;(make-variable-buffer-local 'ac-clang-cflags)
+;; (setq ac-clang-cflags
+;;       (mapcar (lambda (item)(concat "-I" item))
+;;               (split-string
+;;                "
+;; /usr/include
+;; /usr/include/qt/
+;; /usr/include/qt/QtCore
+;; /usr/include/qt/QtGui
+;; /usr/include/qt/QtWidgets
+;; /usr/include/qt/QtNetwork
+;; "
+;;                )))
 
 
-;; (ac-clang-syntax-check)
+;; ;; (ac-clang-syntax-check)
 
-(my-ac-config)
+;; (my-ac-config)
 
 
 (require 'auto-complete-extension)
@@ -288,6 +304,7 @@
 (add-to-list 'load-path (concat *ec-root* "/elisp/scala-emacs-mode"))
 (require 'scala-mode-auto)
 (setq scala-mode-indent:step 4)
+(add-to-list 'auto-mode-alist '("\\.sbt$" . scala-emacs-mode))
 
 ;; load highlight-tail, sexy modify progress
 (require 'highlight-tail)

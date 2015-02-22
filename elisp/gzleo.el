@@ -112,3 +112,4 @@
 ;; (run-with-idle-timer 0.1 nil 'toggle-full-screen)
 
 
+(provide 'gzleo)
