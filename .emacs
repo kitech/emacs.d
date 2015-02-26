@@ -134,6 +134,8 @@
 
 ;; 2015-02-16
 (load (concat *ec-root* "/init.el"))
+(load (concat *ec-root* "/hook.el"))
+(load (concat *ec-root* "/keybinding.el"))
 ;; (add-to-list 'load-path (concat *ec-root* "/el-get/el-get"))
 ;(require 'el-get)
 ;(add-to-list 'load-path (concat *ec-root* "/elisp/emacs-ycmd"))

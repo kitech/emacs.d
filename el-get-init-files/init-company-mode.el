@@ -1,4 +1,6 @@
 (require 'company)
+(require 'company-inf-ruby)
+
 (company-mode t)
 (autoload 'company-mode "company" nil t)
 (define-key company-mode-map "\t" nil)
