@@ -1,7 +1,6 @@
 
 
-
-(set-variable 'ycmd-global-config "/home/gzleo/emacs.d/ycm_extra_conf.py")
+(set-variable 'ycmd-global-config (concat *elroot* "/misc/ycm_extra_conf.py"))
 (set-variable 'ycmd-server-command '("python2" "/home/gzleo/opensource/ycmd/ycmd"))
 (require 'ycmd)
 (ycmd-setup)

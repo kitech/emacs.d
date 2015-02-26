@@ -56,8 +56,15 @@
  (company-c-headers status "installed" recipe
                     (:name company-c-headers :description "Company mode backend for C/C++ header files." :type github :pkgname "randomphrase/company-c-headers" :depends
                            (company-mode)))
+ (company-inf-ruby status "installed" recipe
+                   (:name company-inf-ruby :description "Completion back-end for inf-ruby" :type github :pkgname "company-mode/company-inf-ruby" :depends
+                          (inf-ruby company-mode)))
  (company-mode status "installed" recipe
                (:name company-mode :website "http://company-mode.github.io/" :description "Modular in-buffer completion framework for Emacs" :type github :pkgname "company-mode/company-mode"))
+ (company-php status "installed" recipe
+              (:name company-php :description "Use a boris comint process to provide completion candidates for php. " :type github :pkgname "tomterl/company-php-session-backend"))
+ (dash status "installed" recipe
+       (:name dash :description "A modern list api for Emacs. No 'cl required." :type github :pkgname "magnars/dash.el"))
  (deferred status "installed" recipe
    (:name deferred :description "Simple asynchronous functions for emacs lisp." :type github :pkgname "kiwanami/emacs-deferred"))
  (ecb status "required" recipe nil)
@@ -66,6 +73,10 @@
              (:name emacs-ycmd :description "emacs bindings to the ycmd completion server." :website "https://github.com/abingham/emacs-ycmd" :type github :depends
                     (anaphora request deferred popup)
                     :pkgname "abingham/emacs-ycmd"))
+ (f status "installed" recipe
+    (:name f :website "https://github.com/rejeep/f.el" :description "Modern API for working with files and directories in Emacs" :depends
+           (s dash)
+           :type github :pkgname "rejeep/f.el"))
  (flymake status "installed" recipe
           (:name flymake :description "Continuous syntax checking for Emacs." :type github :pkgname "illusori/emacs-flymake"))
  (fuzzy status "installed" recipe
@@ -82,9 +93,19 @@
                          (highline-mode 1))))
  (idle-highlight-mode status "installed" recipe
                       (:name idle-highlight-mode :description "Idle Highlight Mode." :website "https://github.com/nonsequitur/idle-highlight-mode" :type github :pkgname "nonsequitur/idle-highlight-mode"))
+ (inf-ruby status "installed" recipe
+           (:name inf-ruby :description "Inferior Ruby Mode - ruby process in a buffer." :type github :pkgname "nonsequitur/inf-ruby"))
  (js2-mode status "installed" recipe
            (:name js2-mode :website "https://github.com/mooz/js2-mode#readme" :description "An improved JavaScript editing mode" :type github :pkgname "mooz/js2-mode" :prepare
                   (autoload 'js2-mode "js2-mode" nil t)))
+ (llvm-mode status "installed" recipe
+            (:name llvm-mode :description "Major mode for the LLVM assembler language." :website "http://llvm.org/" :type http :url "http://llvm.org/viewvc/llvm-project/llvm/trunk/utils/emacs/llvm-mode.el?view=co" :build
+                   (("mv" "llvm-mode.el_view_co" "llvm-mode.el"))
+                   :prepare
+                   (progn
+                     (autoload 'llvm-mode "llvm-mode" "LLVM assembler language editing mode." t)
+                     (add-to-list 'auto-mode-alist
+                                  '("\\.ll\\'" . llvm-mode)))))
  (markdown-mode status "installed" recipe
                 (:name markdown-mode :description "Major mode to edit Markdown files in Emacs" :website "http://jblevins.org/projects/markdown-mode/" :type git :url "git://jblevins.org/git/markdown-mode.git" :prepare
                        (add-to-list 'auto-mode-alist
@@ -109,6 +130,8 @@
           (:name request :description "Easy HTTP request for Emacs Lisp" :type github :submodule nil :pkgname "tkf/emacs-request"))
  (ruby-mode status "installed" recipe
             (:name ruby-mode :builtin "24" :type http :description "Major mode for editing Ruby files." :url "http://bugs.ruby-lang.org/projects/ruby-trunk/repository/raw/misc/ruby-mode.el"))
+ (s status "installed" recipe
+    (:name s :description "The long lost Emacs string manipulation library." :type github :pkgname "magnars/s.el"))
  (sbt-mode status "installed" recipe
            (:name sbt-mode :description "An emacs mode for interacting with scala sbt and projects" :type github :pkgname "hvesalai/sbt-mode"))
  (scala-mode2 status "installed" recipe
@@ -125,6 +148,9 @@
  (yasnippet status "installed" recipe
             (:name yasnippet :website "https://github.com/capitaomorte/yasnippet.git" :description "YASnippet is a template system for Emacs." :type github :pkgname "capitaomorte/yasnippet" :compile "yasnippet.el" :submodule nil :build
                    (("git" "submodule" "update" "--init" "--" "snippets"))))
+ (yasnippet-snippets status "installed" recipe
+                     (:name yasnippet-snippets :description "A collection of yasnippet snippets for many languages" :type github :pkgname "AndreaCrotti/yasnippet-snippets" :depends
+                            (yasnippet)))
  (yasnippets status "installed" recipe
              (:name yasnippets :description "Comprehensive collection of yasnippets" :type github :pkgname "rejeep/yasnippets" :depends
                     (yasnippet))))

@@ -46,6 +46,7 @@
 
 (require 'package)
 (require 'el-get)
+(add-to-list 'el-get-recipe-path (concat *elroot* "/el-get-recipes"))
 (require 'init-company-mode)
 (require 'init-emacs-ycmd)
 (require 'init-yasnippet)
@@ -59,22 +60,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;
 (require 'highline) (global-highline-mode t)
-;;(require 'ruby-mode)
+(require 'ruby-mode)
 (require 'pkgbuild-mode)
 
  ;; go lang
 (require 'go-mode) (require `go-mode-load)
+
 
 (require 'scala-mode2)
 (require 'sbt-mode)
 (require 'idle-highlight-mode)
 (load (concat *elroot* "/handby/request-deferred.el"))
 (require 'request-deferred)
-(require 'company-ycmd)
 (require 'js2-mode)
 (require 'nginx-mode)
 (require 'protobuf-mode)
-
+(require 'llvm-mode)
 (require 'qmake-mode)
 (add-to-list 'auto-mode-alist '("\\.pr[io]$" . qmake-mode))
 
@@ -92,7 +93,7 @@
                'c-mode-common-hook
                'cc-mode-hook
                'c++-mode-hook
-               'php-mode-hook
+;;               'php-mode-hook
                'ruby-mode-hook
                'python-mode-hook
                'go-mode-hook
@@ -101,5 +102,10 @@
                'emms-tag-editor-mode-hook
                'sh-mode-hook))
   (add-hook hook 'company-mode))
+
+;; (dolist (hook2 (list
+;;                 'php-mode-hook
+;;                 'c++-mode-hook))
+;;   (add-hook hook2 'ycmd-mode))
 
 (provide 'init)

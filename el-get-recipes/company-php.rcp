@@ -1,0 +1,5 @@
+(:name company-php
+       :description "Use a boris comint process to provide completion candidates for php. "
+       :type github
+       :pkgname "tomterl/company-php-session-backend")
+
